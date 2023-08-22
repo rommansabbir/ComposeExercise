@@ -29,6 +29,9 @@ import com.rommansabbir.composeexcercise.R
 fun FillMaxWidth(): Modifier = Modifier.fillMaxWidth()
 
 @Composable
+fun FillMaxSize(): Modifier = Modifier.fillMaxSize()
+
+@Composable
 fun TrainingCoursesCourseInformation(
 
 ) {
