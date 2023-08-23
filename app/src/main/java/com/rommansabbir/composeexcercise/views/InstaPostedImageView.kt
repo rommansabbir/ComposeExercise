@@ -29,14 +29,17 @@ data class InstaPostedImageViewDataModel(
 )
 
 @Composable
-fun InstaPostedImageView(model: InstaPostedImageViewDataModel) {
+fun InstaPostedImageView(
+    model: InstaPostedImageViewDataModel,
+    onCallback: (action: InstaPostedContentLikeCommentsViewActions) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
         InstaPostedImageVideoUserInfoView(
             title = "user", image = R.drawable.baseline_account_circle_24
         ) {
-
+            onCallback.invoke(InstaPostedContentLikeCommentsViewActions.OnOptionSelected)
         }
         Image(
             painter = painterResource(id = R.drawable.baseline_account_circle_24),
@@ -46,13 +49,15 @@ fun InstaPostedImageView(model: InstaPostedImageViewDataModel) {
                 .fillMaxWidth()
                 .requiredHeight(400.dp)
         )
-        InstaPostedContentLikeCommentsView(data = InstaPostedContentLikeCommentsViewDataModel(
-            likedBy = "Liked by you and others",
-            postDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-            comments = "View all comments",
-            postedOn = "10 minutes ago"
+        InstaPostedContentLikeCommentsView(
+            data = InstaPostedContentLikeCommentsViewDataModel(
+                likedBy = "Liked by you and others",
+                postDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                comments = "View all comments",
+                postedOn = "10 minutes ago"
 
-        ), onCallback = {})
+            ), onCallback = onCallback
+        )
     }
 }
 
@@ -87,7 +92,8 @@ fun PreviewInstaPostedImageView() {
             )
         }
         repeat(models.size) { index ->
-            InstaPostedImageView(models[index])
+            InstaPostedImageView(models[index]){
+            }
         }
     }
 }
