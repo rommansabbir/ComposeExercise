@@ -1,5 +1,6 @@
 package com.rommansabbir.composeexcercise
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -7,6 +8,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.rommansabbir.composeexcercise.views.BrandHeaderView
 import com.rommansabbir.composeexcercise.views.InstaPostedImageView
@@ -17,6 +19,7 @@ import com.rommansabbir.composeexcercise.views.InstaStoriesViewDataModel
 @Composable
 fun InstaFeedView() {
     Column(modifier = Modifier.fillMaxSize()) {
+        val context = LocalContext.current
         //Insta view column
         BrandHeaderView("Banglagram") {
         }
@@ -35,7 +38,7 @@ fun InstaFeedView() {
                 }
             }
             InstaStoriesView(list = list, onCallback = {
-
+                Toast.makeText(context, "Insta story clicked", Toast.LENGTH_SHORT).show()
             })
 
             val models = mutableListOf<InstaPostedImageViewDataModel>().apply {
