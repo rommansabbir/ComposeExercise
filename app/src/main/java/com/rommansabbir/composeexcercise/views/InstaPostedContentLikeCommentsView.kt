@@ -48,6 +48,8 @@ sealed class InstaPostedContentLikeCommentsViewActions {
     object OnShowComments : InstaPostedContentLikeCommentsViewActions()
     object OnShare : InstaPostedContentLikeCommentsViewActions()
     object OnSavePost : InstaPostedContentLikeCommentsViewActions()
+
+    object OnOptionSelected : InstaPostedContentLikeCommentsViewActions()
 }
 
 /**
