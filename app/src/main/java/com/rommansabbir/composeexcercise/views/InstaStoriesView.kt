@@ -51,42 +51,38 @@ data class InstaStoriesViewDataModel(
  */
 @Composable
 fun InstaStoriesView(
-    list: MutableList<InstaStoriesViewDataModel>,
+    model :InstaStoriesViewDataModel,
     onCallback: (action: InstaStoriesViewActions) -> Unit
 ) {
-    val scrollState = rememberScrollState()
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.Black)
-            .horizontalScroll(scrollState),
+            .background(Color.Black),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        repeat(list.size) { index ->
-            Column(
-                modifier = Modifier
-                    .padding(start = 8.dp, end = 8.dp)
-                    .size(80.dp)
-                    .clickable {
-                        onCallback.invoke(
-                            InstaStoriesViewActions.OnViewStory(
-                                list[index]
-                            )
+        Column(
+            modifier = Modifier
+                .padding(start = 8.dp, end = 8.dp)
+                .size(80.dp)
+                .clickable {
+                    onCallback.invoke(
+                        InstaStoriesViewActions.OnViewStory(
+                            model
                         )
-                    },
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Box {
-                    Image(
-                        painter = painterResource(id = list[index].image),
-                        contentDescription = "",
-                        modifier = Modifier.size(50.dp)
                     )
-                }
-                Text(text = list[index].title, color = Color.White, fontSize = 12.sp)
+                },
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Box {
+                Image(
+                    painter = painterResource(id = model.image),
+                    contentDescription = "",
+                    modifier = Modifier.size(50.dp)
+                )
             }
+            Text(text = model.title, color = Color.White, fontSize = 12.sp)
         }
     }
 }
@@ -95,7 +91,7 @@ fun InstaStoriesView(
 @Composable
 fun PreviewInstaStoriesView() {
     Column(modifier = Modifier.fillMaxSize()) {
-        InstaStoriesView(list = mutableListOf<InstaStoriesViewDataModel>().apply {
+        /*InstaStoriesView(list = mutableListOf<InstaStoriesViewDataModel>().apply {
             for (index in 0..20) {
                 add(
                     InstaStoriesViewDataModel(
@@ -105,6 +101,6 @@ fun PreviewInstaStoriesView() {
             }
         }) {
 
-        }
+        }*/
     }
 }
